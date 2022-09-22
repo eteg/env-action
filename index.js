@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const exec = require('@actions/exec');
 const shell = require('shelljs');
-const fs = require('fs/promises')
+const fs = require('fs')
 
 async function run() {
   try {
@@ -37,16 +37,16 @@ async function run() {
       }
     })
 
-    await fs.writeFile(`${path}/.env`, content, (error) => {
+    fs.writeFile(`${path}/.env`, content, (error) => {
       if (error) {
         core.setFailed('Error writing .env file');
       }
-    })
 
-    shell.echo(`🎉 Job has been finished`);
-    shell.exec(`cat ${path}/.env`)
-    exec.exec(`ls -la ${path}`)
-    exec.exec(`cat ${path}/.env`)
+      shell.echo(`🎉 Job has been finished`);
+      shell.exec(`cat ${path}/.env`)
+      exec.exec(`ls -la ${path}`)
+      exec.exec(`cat ${path}/.env`)
+    })
 
   } catch (error) {
     core.setFailed(error.message);
