@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const exec = require('@actions/exec');
 const shell = require('shelljs');
 const fs = require('fs')
 
@@ -32,7 +31,7 @@ async function run() {
     let content = ''
 
     Object.keys(secrets).forEach(secret => {
-      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
+      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_') || secret.startsWith('AWS_')) {
         content += `${secret}=${secrets[secret]}\n`
       }
     })
@@ -43,9 +42,6 @@ async function run() {
       }
 
       shell.echo(`🎉 Job has been finished`);
-      shell.exec(`cat ${path}/.env`)
-      exec.exec(`ls -la ${path}`)
-      exec.exec(`cat ${path}/.env`)
     })
 
   } catch (error) {
