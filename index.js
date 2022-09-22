@@ -30,6 +30,8 @@ async function run() {
    
     let content = ''
 
+    shell.echo(secrets);
+
     Object.keys(secrets).forEach(secret => {
       if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
         content += `${secret}=${secrets[secret]}\n`
