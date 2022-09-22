@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const exec = require('@actions/exec');
 const shell = require('shelljs');
-const fs = require('fs')
+const fs = require('fs/promises')
 
 async function run() {
   try {
@@ -37,7 +37,7 @@ async function run() {
       }
     })
 
-    fs.writeFile(`${path}/.env`, content, (error) => {
+    await fs.writeFile(`${path}/.env`, content, (error) => {
       if (error) {
         core.setFailed('Error writing .env file');
       }

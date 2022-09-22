@@ -17994,6 +17994,14 @@ module.exports = require("fs");
 
 /***/ }),
 
+/***/ 3292:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs/promises");
+
+/***/ }),
+
 /***/ 3685:
 /***/ ((module) => {
 
@@ -18163,7 +18171,7 @@ const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const exec = __nccwpck_require__(1514);
 const shell = __nccwpck_require__(3516);
-const fs = __nccwpck_require__(7147)
+const fs = __nccwpck_require__(3292)
 
 async function run() {
   try {
@@ -18198,7 +18206,7 @@ async function run() {
       }
     })
 
-    fs.writeFile(`${path}/.env`, content, (error) => {
+    await fs.writeFile(`${path}/.env`, content, (error) => {
       if (error) {
         core.setFailed('Error writing .env file');
       }
