@@ -8,7 +8,8 @@ async function run() {
   try {
     const dateTime = (new Date()).toLocaleString('pt-BR');
 
-    const path = core.getInput('path');
+    const path = core.getInput('PATH');
+    const secrets = JSON.parse(core.getInput('SECRETS'));
 
     if (!fs.existsSync(path)) { 
       throw new Error('Path not found');
@@ -28,7 +29,7 @@ async function run() {
     shell.echo(`🖥️ Job was automatically triggered by ${eventName} event`);
     shell.echo(`🔎 The name of your branch is ${ref} and your repository is ${repository.name}.`)
    
-    shell.echo(process.env);
+    shell.echo(secrets);
 
     shell.echo(`🎉 Job has been finished`);
 
