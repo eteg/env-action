@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const exec = require('@actions/exec');
 const shell = require('shelljs');
 const fs = require('fs')
 
@@ -37,8 +36,10 @@ async function run() {
       }
     })
 
-    exec.exec(`echo "${content}" > ${path}/.env`)
-    exec.exec(`cat ${path}/.env`)
+    shell.echo(content)
+
+    //shell.echo(`echo "${content}" > ${path}/.env`)
+    //exec.exec(`cat ${path}/.env`)
 
     shell.echo(`🎉 Job has been finished`);
 
