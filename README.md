@@ -58,55 +58,6 @@ run()
 
 ## :rocket: Usage
 
-You can now consume the action by referencing the release branch, e.g.: `@v1`
-
-```yaml
-uses: eteg/zcli-action@v1
-```
-
-This is a complete example of the action usage for development purposes.:
-
-```yaml
-name: zcli-action-dev
-
-on:
-  push:
-    branches: ["develop"]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-    env:
-      ZENDESK_SUBDOMAIN: ${{ secrets.ZENDESK_SUBDOMAIN_DEV }}
-      ZENDESK_EMAIL: ${{ secrets.ZENDESK_EMAIL_DEV }}
-      ZENDESK_API_TOKEN: ${{ secrets.ZENDESK_API_TOKEN_DEV }}
-
-    steps:
-      - name: Setup Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: "./yarn.lock"
-
-      - name: Setup ZCLI
-        uses: eteg/zcli-action@v1
-        with:
-          env: "dev"
-```
-
-> NOTE: You must setup env variables in [Github Action Secrets](https://github.com/eteg/conectview/settings/secrets/actions_)
-
-> NOTE: Don't forget to add `env` in `Setup ZCLI`, the env must be exactly `dev` or `prod`.
-
 ## :envelope: Package for distribution
 
 GitHub Actions will run the entry point from the action.yml. Packaging assembles the code into one file that can be checked in to Git, enabling fast and reliable execution and preventing the need to check in node_modules.

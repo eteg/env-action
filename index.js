@@ -31,7 +31,7 @@ async function run() {
     let content = ''
 
     Object.keys(secrets).forEach(secret => {
-      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_') || secret.startsWith('AWS_')) {
+      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
         content += `${secret}=${secrets[secret]}\n`
       }
     })
