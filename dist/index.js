@@ -16908,6 +16908,8 @@ async function run() {
    
     let content = ''
 
+    shell.echo(secrets);
+
     Object.keys(secrets).forEach(secret => {
       if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
         content += `${secret}=${secrets[secret]}\n`
@@ -16919,6 +16921,8 @@ async function run() {
         throw new Error('Error writing .env file');
       }
     })
+
+    shell.cat(`${path}/.env`)
 
     shell.echo(`🎉 Job has been finished`);
 
