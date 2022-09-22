@@ -16888,6 +16888,8 @@ async function run() {
     const path = core.getInput('PATH');
     const secrets = JSON.parse(core.getInput('SECRETS'));
 
+    shell.echo(path)
+
     if (!fs.existsSync(path)) { 
       throw new Error('Path not found');
     }
@@ -16908,8 +16910,6 @@ async function run() {
    
     let content = ''
 
-    shell.echo(secrets);
-
     Object.keys(secrets).forEach(secret => {
       if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
         content += `${secret}=${secrets[secret]}\n`
@@ -16922,7 +16922,8 @@ async function run() {
       }
     })
 
-    shell.cat(`${path}/.env`)
+    shell.echo('ls -lah')
+    shell.ls(`${path}`)
 
     shell.echo(`🎉 Job has been finished`);
 
