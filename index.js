@@ -44,8 +44,8 @@ async function run() {
       }
     })
 
-    shell.echo('ls -lah')
-    shell.ls(`${path}`)
+    shell.exec('ls -lah')
+    shell.ls(path)
 
     shell.echo(`🎉 Job has been finished`);
 
