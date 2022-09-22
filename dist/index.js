@@ -16922,7 +16922,7 @@ async function run() {
       }
     })
 
-    shell.exec('ls -lah apps/zendesk')
+    shell.exec('cat apps/zendesk')
 
     shell.echo(`🎉 Job has been finished`);
 
