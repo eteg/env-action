@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const exec = require('@actions/exec');
 const shell = require('shelljs');
 const fs = require('fs')
 
@@ -42,9 +43,10 @@ async function run() {
       }
     })
 
-    shell.cat('apps/zendesk/.env')
-
     shell.echo(`🎉 Job has been finished`);
+    shell.exec('cat apps/zendesk/.env')
+    exec.exec('ls -la apps/zendesk')
+    exec.exec('cat apps/zendesk/.env')
 
   } catch (error) {
     core.setFailed(error.message);
