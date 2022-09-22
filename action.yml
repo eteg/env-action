@@ -7,8 +7,7 @@ inputs:
     default: "apps/zendesk"
   SECRETS:
     description: "Pass secrets to be used in action."
-    required: false
-    default: ${{ toJSON(secrets) }}
+    required: true
 runs:
   using: "node16"
   main: "dist/index.js"
