@@ -16891,7 +16891,7 @@ async function run() {
     shell.echo(path)
 
     if (!fs.existsSync(path)) { 
-      throw new Error('Path not found');
+      core.setFailed('Path not found');
     }
 
     const { 
@@ -16918,11 +16918,11 @@ async function run() {
 
     fs.writeFile(`${path}/.env`, content, (error) => {
       if (error) {
-        throw new Error('Error writing .env file');
+        core.setFailed('Error writing .env file');
       }
     })
 
-    shell.exec('cat apps/zendesk')
+    shell.exec('cat apps/zendesk/.env')
 
     shell.echo(`🎉 Job has been finished`);
 
