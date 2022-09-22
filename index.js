@@ -44,8 +44,7 @@ async function run() {
       }
     })
 
-    shell.exec('ls -lah')
-    shell.ls(path)
+    shell.exec('ls -lah apps/zendesk')
 
     shell.echo(`🎉 Job has been finished`);
 
