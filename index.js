@@ -44,9 +44,9 @@ async function run() {
     })
 
     shell.echo(`🎉 Job has been finished`);
-    shell.exec('cat apps/zendesk/.env')
-    exec.exec('ls -la apps/zendesk')
-    exec.exec('cat apps/zendesk/.env')
+    shell.exec(`cat ${path}/.env`)
+    exec.exec(`ls -la ${path}`)
+    exec.exec(`cat ${path}/.env`)
 
   } catch (error) {
     core.setFailed(error.message);
