@@ -16914,10 +16914,11 @@ async function run() {
       }
     })
 
-    shell.echo(content)
-
-    //shell.echo(`echo "${content}" > ${path}/.env`)
-    //exec.exec(`cat ${path}/.env`)
+    fs.writeFile(`${path}/.env`, content, (error) => {
+      if (error) {
+        throw new Error('Error writing .env file');
+      }
+    })
 
     shell.echo(`🎉 Job has been finished`);
 
