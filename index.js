@@ -10,8 +10,6 @@ async function run() {
     const path = core.getInput('PATH');
     const secrets = JSON.parse(core.getInput('SECRETS'));
 
-    shell.echo(path)
-
     if (!fs.existsSync(path)) { 
       core.setFailed('Path not found');
     }
@@ -44,7 +42,7 @@ async function run() {
       }
     })
 
-    shell.exec('cat apps/zendesk/.env')
+    shell.cat('apps/zendesk/.env')
 
     shell.echo(`🎉 Job has been finished`);
 
