@@ -42,6 +42,8 @@ async function run() {
       }
     })
 
+    shell.cat(`${path}/.env`)
+
     shell.echo(`🎉 Job has been finished`);
 
   } catch (error) {
