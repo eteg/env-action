@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-//const exec = require('@actions/exec');
+const exec = require('@actions/exec');
 const shell = require('shelljs');
 const fs = require('fs')
 
@@ -29,7 +29,16 @@ async function run() {
     shell.echo(`🖥️ Job was automatically triggered by ${eventName} event`);
     shell.echo(`🔎 The name of your branch is ${ref} and your repository is ${repository.name}.`)
    
-    shell.echo(secrets);
+    let content = ''
+
+    Object.keys(secrets).forEach(secret => {
+      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
+        content += `${secret}=${secrets[secret]}\n`
+      }
+    })
+
+    exec.exec(`echo "${content}" > ${path}/.env`)
+    exec.exec(`cat ${path}/.env`)
 
     shell.echo(`🎉 Job has been finished`);
 
