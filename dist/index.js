@@ -16909,9 +16909,9 @@ async function run() {
     let content = ''
 
     Object.keys(secrets).forEach(secret => {
-      if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
-        content += `${secret}=${secrets[secret]}\n`
-      }
+      content += `${secret}=${secrets[secret]}\n`
+      /* if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
+      } */
     })
 
     fs.writeFile(`${path}/.env`, content, (error) => {
