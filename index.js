@@ -40,9 +40,11 @@ async function run() {
       if (error) {
         core.setFailed('Error writing .env file');
       }
-      shell.cat(`${path}/.env`);
+      shell.exec(`cat ${path}/.env`);
       shell.echo(`🎉 Job has been finished`);
     })
+
+    shell.exec(`cat ${path}/.env`);
 
   } catch (error) {
     core.setFailed(error.message);
