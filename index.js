@@ -7,14 +7,16 @@ async function run() {
   try {
     const dateTime = (new Date()).toLocaleString('pt-BR');
 
+    console.log('🚀 Starting job...');
+
     const path = core.getInput('PATH');
     const secrets = JSON.parse(core.getInput('SECRETS'));
 
-    if (!fs.existsSync(path)) { 
+    if (!fs.existsSync(path)) {
       core.setFailed('Path not found');
     }
 
-    const { 
+    const {
       ref,
       eventName
     } = github.context;
@@ -27,7 +29,7 @@ async function run() {
     shell.echo(`💡 Job started at ${dateTime}`);
     shell.echo(`🖥️ Job was automatically triggered by ${eventName} event`);
     shell.echo(`🔎 The name of your branch is ${ref} and your repository is ${repository.name}.`)
-   
+
     let content = ''
 
     Object.keys(secrets).forEach(secret => {
@@ -49,7 +51,7 @@ async function run() {
   } catch (error) {
     core.setFailed(error.message);
   }
-} 
+}
 
 
 run();
