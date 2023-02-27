@@ -4,7 +4,7 @@ inputs:
   PATH:
     description: "Path to the app directory."
     required: true
-    default: "apps/zendesk"
+    default: "."
   SECRETS:
     description: "Pass secrets to be used in action."
     required: true
