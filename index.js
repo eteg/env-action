@@ -7,8 +7,6 @@ async function run() {
   try {
     const dateTime = (new Date()).toLocaleString('pt-BR');
 
-    console.log('🚀 Starting job...');
-
     const path = core.getInput('PATH');
     const secrets = JSON.parse(core.getInput('SECRETS'));
 
