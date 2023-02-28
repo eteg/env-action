@@ -16906,13 +16906,19 @@ async function run() {
     shell.echo(`🖥️ Job was automatically triggered by ${eventName} event`);
     shell.echo(`🔎 The name of your branch is ${ref} and your repository is ${repository.name}.`)
 
-    let content = ''
+    let contentArray = []
 
     Object.keys(secrets).forEach(secret => {
       if (!secret.includes('AWS_PRIVATE_KEY')) {
-        content += `${secret}=${secrets[secret]}\n`
+        contentArray.push(`${secret}=${secrets[secret]}\n`)
       }
     })
+
+    contentArray.sort(function (a) {
+      if (a.startsWith('MONGO')) return -1;
+    });
+
+    const content = contentArray.join('')
 
     fs.writeFile(`${path}/.env`, content, (error) => {
       if (error) {
