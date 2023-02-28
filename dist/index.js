@@ -16909,9 +16909,9 @@ async function run() {
     let content = ''
 
     Object.keys(secrets).forEach(secret => {
-      content += `${secret}=${secrets[secret]}\n`
-      /* if(secret.startsWith('VITE_') || secret.startsWith('ZENDESK_')) {
-      } */
+      if (!secret.includes('AWS_PRIVATE_KEY')) {
+        content += `${secret}=${secrets[secret]}\n`
+      }
     })
 
     fs.writeFile(`${path}/.env`, content, (error) => {
